@@ -1,0 +1,56 @@
+{% extends '/back/base.html.twig' %}
+
+{% block body %}
+    <style>
+        .custom-form-background {
+            background-color: #f8f9fa; /* Couleur d'arrière-plan */
+            padding: 20px; /* Marge intérieure pour l'espace autour du formulaire */
+            border-radius: 10px; /* Arrondi les coins du formulaire */
+        }
+        .error-message {
+            color: #721c24; /* Couleur du texte pour les messages d'erreur */
+            background-color: #f8d7da; /* Couleur de fond pour les messages d'erreur */
+            padding: 10px; /* Marge intérieure pour l'espace autour du message d'erreur */
+            border-radius: 5px; /* Arrondi les coins du message d'erreur */
+            margin-top: 5px; /* Marge supérieure pour l'espace entre le message d'erreur et le champ de saisie */
+        }
+    </style>
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card custom-form-background">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4 text-center">Create New Packpersonnalise</h5>
+                        {{ form_start(form, {'attr': {'class': 'row g-3'}}) }}
+                            <div class="col-md-12">
+                                {{ form_row(form.Nom_packperso, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="col-md-12">
+                                {{ form_row(form.Type_pack, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="col-md-12">
+                                {{ form_row(form.Description_pack, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="col-md-12">
+                                {{ form_row(form.Prix, {'attr': {'class': 'form-control'}}) }}
+                                {% if form.vars.errors['Prix'] is defined and form.vars.errors['Prix']|length > 0 %}
+                                    <div class="error-message">Le prix ne peut pas être négatif.</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-12">
+                                {{ form_row(form.Date, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="col-md-12">
+                                {{ form_row(form.Image, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

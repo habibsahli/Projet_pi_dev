@@ -1,0 +1,9 @@
+{% extends '/back/base.html.twig' %}
+
+{% block body %}
+    
+
+    {{ include('typepack/_form.html.twig', {'button_label': 'Create'}) }} {# Incluez le formulaire de typepack avec un libellé de bouton approprié #}
+
+    <a href="{{ path('app_typepack_index') }}" class="btn btn-secondary">Back to List</a> {# Utilisez un bouton stylisé pour revenir à la liste des Typepacks #}
+{% endblock %}

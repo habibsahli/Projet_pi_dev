@@ -1,0 +1,63 @@
+{% extends '/back/base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center mt-5 mb-4">Typepack</h1>
+
+        <div class="card shadow-lg p-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped mx-auto" style="width: 50%;">
+                        <thead class="bg-primary text-white">
+                            <tr>
+                                <th class="text-center" style="width: 200px;">Id</th>
+                                <th class="text-center">Nom du Pack</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ typepack.idTypepack }}</td>
+                                <td>{{ typepack.nomTypePack }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="text-center mt-4">
+    <a href="{{ path('app_typepack_index') }}" class="btn btn-outline-primary mx-2 rounded-pill">
+        <i class="fas fa-arrow-left mr-2"></i> Retour à la liste
+    </a>
+    <a href="{{ path('app_typepack_edit', {'id': typepack.idTypepack}) }}" class="btn btn-primary mx-2 rounded-pill">
+        <i class="fas fa-edit mr-2"></i> Modifier
+    </a>
+    <button type="button" class="btn btn-danger mx-2 rounded-pill" data-toggle="modal" data-target="#deleteModal">
+    <i class="fas fa-trash-alt mr-2"></i> Supprimer
+</button>
+</div>
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirmation de suppression</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir supprimer cet élément ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <form id="deleteForm" action="{{ path('app_typepack_delete', {'id': typepack.idTypepack}) }}" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ typepack.idTypepack) }}">
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

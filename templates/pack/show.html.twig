@@ -1,0 +1,39 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}Détails du Pack{% endblock %}
+
+{% block body %}
+<div class="container">
+    <header>
+        <h1 class="text-center mt-5 mb-4">Détails du Pack</h1>
+    </header>
+
+    <section class="details-section">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <article class="card bg-light mb-4">
+                    <header class="card-header bg-primary text-white">
+                        <h2 class="text-center">{{ pack.nomPack }}</h2>
+                    </header>
+                    <div class="card-body text-center">
+                        <img src="{{ asset('uploads/images/' ~ pack.Image) }}" alt="Image" class="img-fluid rounded mb-4 border border-primary mx-auto d-block" width="300">
+                        <div class="pack-details">
+                            <p class="pack-description">{{ pack.DescriptionPack }}</p>
+                            <p><strong>Type de Pack:</strong> {{ pack.TypePack }}</p>
+                            <p><strong>Prix:</strong> {{ pack.Prix }}</p>
+                        </div>
+                    </div>
+                    <footer class="card-footer bg-light">
+                        <p class="pack-date text-muted">{{ pack.Date ? pack.Date|date('Y-m-d') : '' }}</p>
+                        <div class="text-center mt-3">
+                            <a href="{{ path('app_pack_index') }}" class="btn btn-outline-primary mr-2">Retour à la liste</a>
+                            <a href="{{ path('app_pack_edit', {'id': pack.id_pack}) }}" class="btn btn-primary mr-2">Modifier</a>
+                            {{ include('pack/_delete_form.html.twig') }}
+                        </div>
+                    </footer>
+                </article>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

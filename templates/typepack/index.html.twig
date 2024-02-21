@@ -1,0 +1,39 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="text-center mb-4">Liste des Types de Pack</h1>
+
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nom du Type de Pack</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for typepack in typepacks %}
+                    <tr>
+                        <td>{{ typepack.idTypepack }}</td>
+                        <td>{{ typepack.nomTypePack }}</td>
+                        <td>
+                            <a href="{{ path('app_typepack_show', {'id': typepack.idTypepack}) }}" class="btn btn-sm btn-info">Détails</a>
+                            <a href="{{ path('app_typepack_edit', {'id': typepack.idTypepack}) }}" class="btn btn-sm btn-primary">Modifier</a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="3" class="text-center">Aucun enregistrement trouvé</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="{{ path('app_typepack_new') }}" class="btn btn-success btn-block">Ajouter un nouveau Type de Pack</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

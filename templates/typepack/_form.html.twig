@@ -1,0 +1,37 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-primary shadow">
+                <div class="card-body">
+                    {% if form.vars.value.idTypepack is empty %}
+                        <h5 class="card-title mb-4 text-center font-weight-bold">Créer un nouveau Pack Personnalisé</h5>
+                    {% else %}
+                        <h5 class="card-title mb-4 text-center font-weight-bold">Modifier le Pack Personnalisé</h5>
+                    {% endif %}
+                    {{ form_start(form, {'attr': {'class': 'row g-3'}}) }}
+                    <div class="col-md-12">
+                        <div class="form-group text-center">
+                            {{ form_label(form.nomTypePack, 'Nom du Type Pack', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.nomTypePack, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        {{ form_row(form._token) }} {# Champ CSRF token #}
+                        <button type="submit" class="btn btn-primary btn-block">
+                            {% if form.vars.value.idTypepack is empty %}
+                                Créer
+                            {% else %}
+                                Enregistrer
+                            {% endif %}
+                        </button>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
