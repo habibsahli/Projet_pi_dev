@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-
+use App\Entity\Typepack;
 use App\Repository\PackRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,33 +9,33 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: PackRepository::class)]
 class Pack
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id_pack = null;
+    #[ORM\Id] // Annotation pour indiquer que cette propriété est une clé primaire
+    #[ORM\GeneratedValue] // Annotation pour indiquer que la valeur de cette propriété est générée automatiquement
+    #[ORM\Column] // Annotation pour indiquer que cette propriété est mappée à une colonne de la table
+    private ?int $id_pack = null; // Déclaration de la propriété avec un type nullable (int)
 
-    #[ORM\Column(length: 255)]
-    private ?string $nom_pack = null;
+    #[ORM\Column(length: 255)] // Annotation pour indiquer les détails de la colonne dans la base de données
+    private ?string $nom_pack = null; // Déclaration de la propriété avec un type nullable (string)
 
-    #[ORM\Column(length: 255)]
-    private ?string $Description_pack = null;
+    #[ORM\Column(length: 255)] // Annotation pour indiquer les détails de la colonne dans la base de données
+    private ?string $Description_pack = null; // Déclaration de la propriété avec un type nullable (string)
 
-    #[ORM\Column]
-    private ?float $Prix = null;
+    #[ORM\Column] // Annotation pour indiquer les détails de la colonne dans la base de données
+    private ?float $Prix = null; // Déclaration de la propriété avec un type nullable (float)
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $Date = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE)] // Annotation pour indiquer les détails de la colonne dans la base de données
+    private ?\DateTimeInterface $Date = null; // Déclaration de la propriété avec un type nullable (\DateTimeInterface)
 
-    #[ORM\Column(length: 255)]
-    private ?string $Image = null;
+    #[ORM\Column(length: 255)] // Annotation pour indiquer les détails de la colonne dans la base de données
+    private ?string $Image = null; // Déclaration de la propriété avec un type nullable (string)
 
-    #[ORM\ManyToOne(targetEntity: Typepack::class)]
-    #[ORM\JoinColumn(name: "id_typepack", referencedColumnName: "id_typepack", nullable: false)]
-    private ?Typepack $Type_pack = null; // Spécifiez le type d'accès ici
+    #[ORM\ManyToOne(targetEntity: Typepack::class)] // Annotation pour indiquer la relation ManyToOne avec l'entité Typepack
+    #[ORM\JoinColumn(name: "id_typepack", referencedColumnName: "id_typepack", nullable: false)] // Annotation pour configurer la jointure
+    private ?Typepack $Type_pack = null; // Déclaration de la propriété avec un type nullable (Typepack)
 
     // Les autres méthodes de l'entité Pack...
 
-  
+    // Méthodes getters et setters pour accéder et définir les valeurs des propriétés
 
     public function getId_pack(): ?int
     {
@@ -104,10 +104,7 @@ class Pack
 
     public function getTypePack(): ?string
     {
-        // Vous devez adapter cette logique en fonction de la relation entre Pack et Typepack
-        // Supposons que vous avez une relation ManyToOne avec Typepack et que le champ correspondant est Type_pack
-        // Dans ce cas, vous pouvez accéder au nom du type de pack ainsi :
-        return $this->Type_pack ? $this->Type_pack->getNomTypePack() : null; // Assurez-vous que getNomTypePack() existe dans votre entité Typepack
+        return $this->Type_pack ? $this->Type_pack->getNomTypePack() : null;
     }
 
     public function setTypePack(?Typepack $Type_pack): static
@@ -116,6 +113,4 @@ class Pack
 
         return $this;
     }
-
-    
 }

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+
+<title>New PackPersonnaliser</title>
+
+{% block body %}
+    <h1>Create new PackPersonnaliser</h1>
+
+    {{ include('pack_personnaliser/_form.html.twig') }}
+
+    <a href="{{ path('app_pack_personnaliser_index') }}">back to list</a>
+{% endblock %}

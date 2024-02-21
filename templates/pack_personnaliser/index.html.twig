@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<title>PackPersonnaliser index</title>
+
+{% block body %}
+    <h1>PackPersonnaliser index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdPackPersonnaliser</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pack_personnaliser in pack_personnalisers %}
+            <tr>
+                <td>{{ pack_personnaliser.idPackPersonnaliser }}</td>
+                <td>
+                    <a href="{{ path('app_pack_personnaliser_show', {'idPackPersonnaliser': pack_personnaliser.idPackPersonnaliser}) }}">show</a>
+                    <a href="{{ path('app_pack_personnaliser_edit', {'idPackPersonnaliser': pack_personnaliser.idPackPersonnaliser}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_pack_personnaliser_new') }}">Create new</a>
+{% endblock %}

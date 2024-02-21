@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+<title>Edit PackPersonnaliser</title>
+
+{% block body %}
+    <h1>Edit PackPersonnaliser</h1>
+
+    {{ include('pack_personnaliser/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_pack_personnaliser_index') }}">back to list</a>
+
+    {{ include('pack_personnaliser/_delete_form.html.twig') }}
+{% endblock %}

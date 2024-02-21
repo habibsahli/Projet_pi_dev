@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<title>Programme index</title>
+
+{% block body %}
+    <h1>Programme index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description Programme</th>
+                <th>Image</th>
+                <th>Duree</th>
+                <th>Categorie</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for programme in programmes %}
+            <tr>
+                <td>{{ programme.id_prog }}</td>
+                <td>{{ programme.descriptionProgramme }}</td>
+                <td>{{ programme.image }}</td>
+                <td>{{ programme.duree ? programme.duree|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ programme.categorie }}</td>
+                <td>
+                    <a href="{{ path('app_programme_show', {'id': programme.id_prog}) }}">Show</a>
+                    <a href="{{ path('app_programme_edit', {'id': programme.id_prog}) }}">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">No records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_programme_new') }}">Create new</a>
+{% endblock %}
